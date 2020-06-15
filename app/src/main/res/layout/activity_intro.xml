@@ -22,14 +22,13 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="200dp"
-        android:layout_marginBottom="25dp"
         android:text="next"/>
 
     <Button
         android:id="@+id/btn_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
         android:text="skip"/>
 
     </LinearLayout>
