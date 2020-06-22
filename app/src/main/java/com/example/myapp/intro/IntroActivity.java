@@ -9,18 +9,20 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapp.MainActivity;
+import com.example.myapp.SheredPref;
+import com.example.myapp.presentation.main.MainActivity;
 import com.example.myapp.R;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private Button btnNext;
     private Button btnSkip;
+    private SpringDotsIndicator springDotsIndicator;
 
     int page = 0;
 
@@ -34,14 +36,15 @@ public class IntroActivity extends AppCompatActivity {
 
 
         setupViewPager();
-
         pageChange();
-
         nextPage();
-
         skipPages(btnSkip);
 
+        new SheredPref(this).isShown(true);
+
     }
+
+
 
     private void pageChange() {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -76,11 +79,6 @@ public class IntroActivity extends AppCompatActivity {
         });
     }
 
-    private void setupViewPager() {
-        viewPager = findViewById(R.id.ViewPager);
-        viewPager.setAdapter(new IntroFragmentAdapter(getSupportFragmentManager()));
-    }
-
     public void nextPage(){
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +97,14 @@ public class IntroActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setupViewPager() {
+        viewPager = findViewById(R.id.ViewPager);
+        springDotsIndicator = findViewById(R.id.spring_dots_indicator);
+        viewPager.setAdapter(new IntroFragmentAdapter(getSupportFragmentManager()));
+        springDotsIndicator.setViewPager(viewPager);
+
     }
 
 
